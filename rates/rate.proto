@@ -3,7 +3,7 @@ package rates;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package ="github.com/mannanmcc/proto/rates";
+option go_package ="rates/rate";
 
 message RateRequest {
     string baseCurrency = 1;
@@ -11,3 +11,10 @@ message RateRequest {
     google.protobuf.Timestamp datetime = 3;
 }
 
+message RateResponse {
+    string rate = 1;
+}
+
+service RateService {
+    rpc getRate (RateRequest) returns (RateResponse);
+}

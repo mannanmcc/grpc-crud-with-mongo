@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "bookshop/pb";
+option go_package = "github.com/mannanmcc/proto/bookshop/pb";
 
 message Book {
   string title = 1;

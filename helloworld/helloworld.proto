@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package helloworld;
+
+option go_package = "helloworld/pb";
+
+message Message {
+  string name = 1;
+  optional string language = 2;
+}
+
+service HelloService {
+  rpc SayHello(Message) returns (Message) {}
+}

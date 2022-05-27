@@ -31,7 +31,7 @@ func NewInventoryClient(cc grpc.ClientConnInterface) InventoryClient {
 
 func (c *inventoryClient) GetBookList(ctx context.Context, in *GetBookListRequest, opts ...grpc.CallOption) (*GetBookListResponse, error) {
 	out := new(GetBookListResponse)
-	err := c.cc.Invoke(ctx, "/Inventory/GetBookList", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/bookshop.Inventory/GetBookList", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,7 +76,7 @@ func _Inventory_GetBookList_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/Inventory/GetBookList",
+		FullMethod: "/bookshop.Inventory/GetBookList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(InventoryServer).GetBookList(ctx, req.(*GetBookListRequest))
@@ -88,7 +88,7 @@ func _Inventory_GetBookList_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Inventory_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "Inventory",
+	ServiceName: "bookshop.Inventory",
 	HandlerType: (*InventoryServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

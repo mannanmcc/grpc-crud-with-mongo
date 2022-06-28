@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package order;
+
+option go_package = "order/pb";
+
+message OrderRequest {
+  string productId = 1;
+  int32 quantity = 2;
+}
+
+message OrderResponse {
+  string orderNumber = 1;
+}
+
+service OrderService {
+  rpc PlaceOrder(OrderRequest) returns (OrderResponse) {}
+}

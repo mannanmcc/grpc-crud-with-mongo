@@ -14,86 +14,172 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// OrderServiceClient is the client API for OrderService service.
+// PlaceOrderServiceClient is the client API for PlaceOrderService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type OrderServiceClient interface {
-	PlaceOrder(ctx context.Context, in *OrderRequest, opts ...grpc.CallOption) (*OrderResponse, error)
+type PlaceOrderServiceClient interface {
+	PlaceOrder(ctx context.Context, in *PlaceOrderRequest, opts ...grpc.CallOption) (*PlaceOrderResponse, error)
 }
 
-type orderServiceClient struct {
+type placeOrderServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewOrderServiceClient(cc grpc.ClientConnInterface) OrderServiceClient {
-	return &orderServiceClient{cc}
+func NewPlaceOrderServiceClient(cc grpc.ClientConnInterface) PlaceOrderServiceClient {
+	return &placeOrderServiceClient{cc}
 }
 
-func (c *orderServiceClient) PlaceOrder(ctx context.Context, in *OrderRequest, opts ...grpc.CallOption) (*OrderResponse, error) {
-	out := new(OrderResponse)
-	err := c.cc.Invoke(ctx, "/order.OrderService/PlaceOrder", in, out, opts...)
+func (c *placeOrderServiceClient) PlaceOrder(ctx context.Context, in *PlaceOrderRequest, opts ...grpc.CallOption) (*PlaceOrderResponse, error) {
+	out := new(PlaceOrderResponse)
+	err := c.cc.Invoke(ctx, "/order.PlaceOrderService/PlaceOrder", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// OrderServiceServer is the server API for OrderService service.
-// All implementations must embed UnimplementedOrderServiceServer
+// PlaceOrderServiceServer is the server API for PlaceOrderService service.
+// All implementations must embed UnimplementedPlaceOrderServiceServer
 // for forward compatibility
-type OrderServiceServer interface {
-	PlaceOrder(context.Context, *OrderRequest) (*OrderResponse, error)
-	mustEmbedUnimplementedOrderServiceServer()
+type PlaceOrderServiceServer interface {
+	PlaceOrder(context.Context, *PlaceOrderRequest) (*PlaceOrderResponse, error)
+	mustEmbedUnimplementedPlaceOrderServiceServer()
 }
 
-// UnimplementedOrderServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedOrderServiceServer struct {
+// UnimplementedPlaceOrderServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedPlaceOrderServiceServer struct {
 }
 
-func (UnimplementedOrderServiceServer) PlaceOrder(context.Context, *OrderRequest) (*OrderResponse, error) {
+func (UnimplementedPlaceOrderServiceServer) PlaceOrder(context.Context, *PlaceOrderRequest) (*PlaceOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PlaceOrder not implemented")
 }
-func (UnimplementedOrderServiceServer) mustEmbedUnimplementedOrderServiceServer() {}
+func (UnimplementedPlaceOrderServiceServer) mustEmbedUnimplementedPlaceOrderServiceServer() {}
 
-// UnsafeOrderServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to OrderServiceServer will
+// UnsafePlaceOrderServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to PlaceOrderServiceServer will
 // result in compilation errors.
-type UnsafeOrderServiceServer interface {
-	mustEmbedUnimplementedOrderServiceServer()
+type UnsafePlaceOrderServiceServer interface {
+	mustEmbedUnimplementedPlaceOrderServiceServer()
 }
 
-func RegisterOrderServiceServer(s grpc.ServiceRegistrar, srv OrderServiceServer) {
-	s.RegisterService(&OrderService_ServiceDesc, srv)
+func RegisterPlaceOrderServiceServer(s grpc.ServiceRegistrar, srv PlaceOrderServiceServer) {
+	s.RegisterService(&PlaceOrderService_ServiceDesc, srv)
 }
 
-func _OrderService_PlaceOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(OrderRequest)
+func _PlaceOrderService_PlaceOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PlaceOrderRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OrderServiceServer).PlaceOrder(ctx, in)
+		return srv.(PlaceOrderServiceServer).PlaceOrder(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/order.OrderService/PlaceOrder",
+		FullMethod: "/order.PlaceOrderService/PlaceOrder",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OrderServiceServer).PlaceOrder(ctx, req.(*OrderRequest))
+		return srv.(PlaceOrderServiceServer).PlaceOrder(ctx, req.(*PlaceOrderRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// OrderService_ServiceDesc is the grpc.ServiceDesc for OrderService service.
+// PlaceOrderService_ServiceDesc is the grpc.ServiceDesc for PlaceOrderService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var OrderService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "order.OrderService",
-	HandlerType: (*OrderServiceServer)(nil),
+var PlaceOrderService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "order.PlaceOrderService",
+	HandlerType: (*PlaceOrderServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "PlaceOrder",
-			Handler:    _OrderService_PlaceOrder_Handler,
+			Handler:    _PlaceOrderService_PlaceOrder_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "order/order.proto",
+}
+
+// CancelOrderServiceClient is the client API for CancelOrderService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type CancelOrderServiceClient interface {
+	PlaceOrder(ctx context.Context, in *CancelOrderRequest, opts ...grpc.CallOption) (*CancelOrderResponse, error)
+}
+
+type cancelOrderServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewCancelOrderServiceClient(cc grpc.ClientConnInterface) CancelOrderServiceClient {
+	return &cancelOrderServiceClient{cc}
+}
+
+func (c *cancelOrderServiceClient) PlaceOrder(ctx context.Context, in *CancelOrderRequest, opts ...grpc.CallOption) (*CancelOrderResponse, error) {
+	out := new(CancelOrderResponse)
+	err := c.cc.Invoke(ctx, "/order.CancelOrderService/PlaceOrder", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// CancelOrderServiceServer is the server API for CancelOrderService service.
+// All implementations must embed UnimplementedCancelOrderServiceServer
+// for forward compatibility
+type CancelOrderServiceServer interface {
+	PlaceOrder(context.Context, *CancelOrderRequest) (*CancelOrderResponse, error)
+	mustEmbedUnimplementedCancelOrderServiceServer()
+}
+
+// UnimplementedCancelOrderServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedCancelOrderServiceServer struct {
+}
+
+func (UnimplementedCancelOrderServiceServer) PlaceOrder(context.Context, *CancelOrderRequest) (*CancelOrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PlaceOrder not implemented")
+}
+func (UnimplementedCancelOrderServiceServer) mustEmbedUnimplementedCancelOrderServiceServer() {}
+
+// UnsafeCancelOrderServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CancelOrderServiceServer will
+// result in compilation errors.
+type UnsafeCancelOrderServiceServer interface {
+	mustEmbedUnimplementedCancelOrderServiceServer()
+}
+
+func RegisterCancelOrderServiceServer(s grpc.ServiceRegistrar, srv CancelOrderServiceServer) {
+	s.RegisterService(&CancelOrderService_ServiceDesc, srv)
+}
+
+func _CancelOrderService_PlaceOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CancelOrderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CancelOrderServiceServer).PlaceOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/order.CancelOrderService/PlaceOrder",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CancelOrderServiceServer).PlaceOrder(ctx, req.(*CancelOrderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// CancelOrderService_ServiceDesc is the grpc.ServiceDesc for CancelOrderService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var CancelOrderService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "order.CancelOrderService",
+	HandlerType: (*CancelOrderServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "PlaceOrder",
+			Handler:    _CancelOrderService_PlaceOrder_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -4,15 +4,29 @@ package order;
 
 option go_package = "order/pb";
 
-message OrderRequest {
-  string productId = 1;
-  int32 quantity = 2;
+message PlaceOrderRequest {
+  string title = 1;
+  string color = 2;
+  string size = 3;
+  int32 quantity = 4;
 }
 
-message OrderResponse {
+message PlaceOrderResponse {
   string orderNumber = 1;
 }
 
-service OrderService {
-  rpc PlaceOrder(OrderRequest) returns (OrderResponse) {}
+message CancelOrderRequest {
+  string title = 1;
+}
+
+message CancelOrderResponse {
+  string orderNumber = 1;
+}
+
+service PlaceOrderService {
+  rpc PlaceOrder(PlaceOrderRequest) returns (PlaceOrderResponse) {}
+}
+
+service CancelOrderService {
+  rpc PlaceOrder(CancelOrderRequest) returns (CancelOrderResponse) {}
 }

@@ -5,4 +5,4 @@ protos:
 	# protoc --go_out=. --go-grpc_out=. rates/rate.proto
 	protoc --go_out=. --go-grpc_out=. order/order.proto
 gen:
-	protoc --proto_path=messages/createorder messages/createorder/*.proto --go_out=. --go-grpc_out=.
+	protoc --proto_path=createorder createorder/*.proto --go_out=. --go-grpc_out=.

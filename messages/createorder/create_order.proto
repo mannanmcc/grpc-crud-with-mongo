@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package order;
+
+option go_package = "messages/createorder/pb";
+
+message CreateOrderMessage {
+  string title = 1;
+  string description = 2;
+  int32 quantity = 3;
+  float price = 4;
+}

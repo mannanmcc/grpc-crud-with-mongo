@@ -4,7 +4,7 @@ package createorder;
 
 option go_package = "createorder/pb";
 
-message CreateOrderMessage {
+message CreateOrder {
   string title = 1;
   string description = 2;
   int32 quantity = 3;
